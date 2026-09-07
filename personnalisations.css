@@ -1,0 +1,73 @@
+/* Personnalisations du 7 septembre 2026.
+   Cette feuille se charge après celle d'origine et ne la modifie pas.
+   La retirer du HTML suffit à revenir au site publié. */
+
+/* 1. La phrase d'introduction se lit en deux temps.
+      La coupure est écrite dans la page, après « Une coupe qui vous ressemble. »,
+      elle tient donc quelle que soit la largeur de l'écran.
+      On élargit en plus le bloc dès qu'il y a la place, pour que chacune des
+      deux parties tienne sur une seule ligne. En dessous de 620 pixels de large,
+      un téléphone tenu à la verticale, chaque partie occupe deux lignes,
+      c'est la largeur de l'écran qui commande. */
+@media (min-width: 620px) {
+  .hero .hero-copy > p { max-width: 600px; }
+}
+
+/* 2. Le bandeau d'informations est centré, en colonne comme en ligne.
+      Le troisième élément est un lien qui occupe toute la largeur et qui
+      aligne son contenu à gauche, il lui faut sa propre règle. */
+.info-strip {
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 8px 46px;
+}
+
+.info-strip a {
+  justify-content: center;
+}
+
+/* 3. La pastille qui dit si le salon est ouvert, posée à droite du sur-titre.
+      Le sur-titre garde sa marge basse d'origine, c'est elle qui crée
+      l'espace avant le grand titre. */
+.ligne-statut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+}
+
+.statut {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+/* La pastille reste invisible tant que le script n'a pas lu l'heure.
+   Cette règle doit gagner sur celle du dessus, d'où le sélecteur plus précis. */
+.statut[hidden] { display: none; }
+
+/* Un point de couleur avant le mot, pour que l'information passe même
+   en un coup d'œil rapide. */
+.statut::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+/* Ouvert, le vert du salon. Fermé, un gris sourd, jamais du rouge,
+   un salon fermé le soir n'est pas une alerte. */
+.statut.est-ouvert { color: var(--accent); border-color: var(--accent); }
+.statut.est-ferme  { color: var(--muted);  border-color: var(--line); }
