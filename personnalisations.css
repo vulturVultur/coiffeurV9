@@ -184,3 +184,13 @@
 /* Villeneuve au-dessus des deux boutons, même écriture que le nom en haut, lien vers Google Maps (12.11) */
 .lieu-villeneuve { order: -3; align-self: center; font-size: 24px; font-weight: 700; letter-spacing: -.04em; line-height: 1.2; color: #1f211d; text-decoration: none; }
 .lieu-villeneuve:hover { color: #586e3a; }
+
+/* Carte Taper, deux photos qui se relaient en fondu, une seule visible à la fois (14.11.2026) */
+.galerie-cinq .fondu { position: relative; display: block; overflow: hidden; }
+.galerie-cinq .fondu img { animation: fondu-taper 10s infinite; }
+.galerie-cinq .fondu .fondu-2 { position: absolute; top: 0; left: 0; animation-delay: -5s; object-position: center 45%; }
+@keyframes fondu-taper { 0%, 42% { opacity: 1; } 50%, 92% { opacity: 0; } 100% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .galerie-cinq .fondu img { animation: none; }
+  .galerie-cinq .fondu .fondu-2 { display: none; }
+}
